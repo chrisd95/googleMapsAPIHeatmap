@@ -57,10 +57,11 @@ function makeInfoBox(controlDiv, map) {
   var controlText = document.createElement('div');
   controlText.style.color = 'rgb(25,25,25)';
   controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-  controlText.style.fontSize = '100%';
+  controlText.style.fontSize = '20px';
+  controlText.style.fontWeight = 'bold';
   controlText.style.padding = '6px';
   controlText.textContent =
-      'The map shows all clicks made in the last 10 minutes.';
+      'Double-cliquez sur votre ville pour indiquer où vous vivez';
   controlUI.appendChild(controlText);
 }
 
@@ -132,7 +133,7 @@ function makeInfoBox(controlDiv, map) {
       function initFirebase(heatmap) {
 
         // 10 minutes before current time.
-        var startTime = new Date().getTime() - (60 * 10 * 1000);
+        var startTime = new Date().getTime() - (60 * 10000 * 1000);
 
         // Reference to the clicks in Firebase.
         var clicks = firebase.database().ref('clicks');
