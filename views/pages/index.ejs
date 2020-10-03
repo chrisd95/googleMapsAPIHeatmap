@@ -117,10 +117,13 @@ function makeInfoBox(controlDiv, map) {
         });
 
         // Create a heatmap.
+
         var heatmap = new google.maps.visualization.HeatmapLayer({
           data: [],
           map: map,
-          radius: 16
+          radius: 8,
+          maxIntensity:4,
+          opacity:0.5
         });
 
         initAuthentication(initFirebase.bind(undefined, heatmap));
