@@ -65,6 +65,30 @@ function makeInfoBox(controlDiv, map) {
   controlUI.appendChild(controlText);
 }
 
+function makeListBox(controlDiv, map) {
+  // Set CSS for the control border.
+  var controlUI = document.createElement('div');
+  controlUI.style.boxShadow = 'rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px';
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '2px';
+  controlUI.style.marginBottom = '22px';
+  controlUI.style.marginTop = '10px';
+  controlUI.style.marginRight = '10px'
+  controlUI.style.textAlign = 'center';
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior.
+  var controlText = document.createElement('div');
+  controlText.style.color = 'rgb(25,25,25)';
+  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+  controlText.style.fontSize = '20px';
+  controlText.style.fontWeight = 'bold';
+  controlText.style.padding = '6px';
+  controlText.textContent =
+      'Montreal';
+  controlUI.appendChild(controlText);
+}
       /**
       * Starting point for running the program. Authenticates the user.
       * @param {function()} onAuthSuccess - Called when authentication succeeds.
@@ -108,7 +132,11 @@ function makeInfoBox(controlDiv, map) {
         var infoBoxDiv = document.createElement('div');
         makeInfoBox(infoBoxDiv, map);
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(infoBoxDiv);
-
+/*
+        var infoBoxDivTwo = document.createElement('div');
+        makeListBox(infoBoxDivTwo, map);
+        map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(infoBoxDivTwo);
+*/
         // Listen for clicks and add the location of the click to firebase.
         map.addListener('click', function(e) {
           data.lat = e.latLng.lat();
@@ -150,7 +178,9 @@ function makeInfoBox(controlDiv, map) {
             var elapsedMs = Date.now() - newPosition.timestamp;
 
             // Add the point to the heatmap.
-            heatmap.getData().push(point);
+            if (newPosition.sender != "HTFBj3cGzdMzpT28vQPPCGtlsV13"){
+              heatmap.getData().push(point);
+            }
 
             // Request entries older than expiry time (10 minutes).
             var expiryMs = Math.max(60 * 10 * 1000 - elapsedMs, 0);
