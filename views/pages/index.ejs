@@ -177,8 +177,20 @@ function makeListBox(controlDiv, map) {
             var point = new google.maps.LatLng(newPosition.lat, newPosition.lng);
             var elapsedMs = Date.now() - newPosition.timestamp;
 
+            const conditionArray = [
+              newPosition.sender == "HTFBj3cGzdMzpT28vQPPCGtlsV13",
+              newPosition.sender =="kBKLNUhoBZRNIlshF8rV74VV2Mz2",
+              newPosition.sender == "O4stxzq2dCcHBST4w68ROe918xx1",
+              newPosition.sender == "Bd7bh4KdKPMkoT4SQ5lV1YJWu3n2",
+              newPosition.sender == "M5hSN2r2PpbEXDoLNMrs9vz2Dio1",
+              newPosition.sender == "Mse59dJKXYYxAyt3cyxcnw1lfwB3",
+              newPosition.sender == "tqlw7Qjieja9LYcSySqVw7TWbc92",
+              newPosition.sender == "imkkTbvfPGRB036fS0bg5Yg37Cr2",
+              newPosition.sender == "550K9l841egpQ4nC0usOi6QJvQc2"
+
+            ]
             // Add the point to the heatmap.
-            if (newPosition.sender != "HTFBj3cGzdMzpT28vQPPCGtlsV13"){
+            if ((conditionArray[0]|| conditionArray[1] || conditionArray[2] || conditionArray[3] || conditionArray[4] || conditionArray[5]|| conditionArray[6]|| conditionArray[7]|| conditionArray[8])=== false){
               heatmap.getData().push(point);
             }
 
