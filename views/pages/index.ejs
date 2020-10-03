@@ -153,10 +153,12 @@ function makeInfoBox(controlDiv, map) {
             var expiryMs = Math.max(60 * 10 * 1000 - elapsedMs, 0);
 
             // Set client timeout to remove the point after a certain time.
+            /*
             window.setTimeout(function() {
               // Delete the old point from the database.
               snapshot.ref.remove();
             }, expiryMs);
+            */
           }
         );
 
